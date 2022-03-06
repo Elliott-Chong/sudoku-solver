@@ -2,6 +2,7 @@ const COUNT = 9;
 const boardElement = document.getElementById("board");
 let board = new Array(9);
 let focusedTile;
+let gameOver;
 let stop;
 
 for (let i = 0; i < COUNT; i++) {
@@ -15,6 +16,7 @@ for (let i = 0; i < COUNT; i++) {
 
 allTiles = document.querySelectorAll(".tile");
 allTiles.forEach((tile) => {
+    if (gameOver) return;
     tile.addEventListener("click", (_) => {
         allTiles.forEach((tile) => {
             tile.classList.remove("focus");
@@ -24,11 +26,12 @@ allTiles.forEach((tile) => {
     });
 });
 document.addEventListener("keydown", (e) => {
+    if (gameOver) return;
     if (isNaN(e.key) && e.key != "Backspace") return;
     if (focusedTile) {
         if (focusedTile.innerText !== "" && e.key === "Backspace")
             focusedTile.innerText = "";
-        else {
+        else if (e.key !== "Backspace") {
             focusedTile.innerText = e.key;
             focusedTile.classList.add("original");
         }
@@ -157,10 +160,12 @@ document.getElementById("solve-btn").addEventListener("click", async(_) => {
     if (!stop) {
         solveBoard(board);
         updateUI();
+        gameOver = true;
     }
 });
 
 document.getElementById("reset-btn").addEventListener("click", (_) => {
+    gameOver = false;
     board = new Array(9);
     allTiles.forEach((tile) => {
         tile.innerText = "";
