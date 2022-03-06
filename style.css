@@ -81,6 +81,7 @@ button {
 .mobile {
     font-family: monospace;
     text-align: center;
+    color: white;
     display: none;
 }
 
