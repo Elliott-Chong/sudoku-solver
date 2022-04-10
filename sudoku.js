@@ -47,28 +47,10 @@ const updateUI = async () => {
     for (let i = 0; i < COUNT; i++) {
         for (let j = 0; j < COUNT; j++) {
             let tile = document.getElementById(i.toString() + "-" + j.toString());
-            await sleep(Math.random() * 100);
+            await sleep(10);
             tile.innerText = board[i][j];
         }
     }
-    // let all_tiles = []
-    // for (let i = 0; i < COUNT; i++) {
-    //     for (let j = 0; j < COUNT; j++) {
-    //         let tile = document.getElementById(i.toString() + "-" + j.toString());
-    //         all_tiles.push(tile);
-    //     }
-    // }
-
-    // const arrRemove = (arr, value) => {
-    //     return arr.filter((ele) => ele !== value);
-    // }
-    // for (let i = 0; i < COUNT * COUNT; i++) {
-    //     let random = Math.floor(Math.random() * all_tiles.length);
-    //     let tile = all_tiles[random];
-    //     all_tiles = arrRemove(all_tiles, tile);
-    //     tile.innerText = board[tile.id.split("-")[0]][tile.id.split("-")[1]];
-    //     await sleep(50)
-    // }
 
 
 };
@@ -143,7 +125,6 @@ const solveBoard = (board) => {
                         if (solveBoard(board)) {
                             return true;
                         }
-                        board[i][j] = 0;
                     }
                 }
                 return false;
