@@ -127,6 +127,7 @@ const solveBoard = (board) => {
                         }
                     }
                 }
+		    board[i][j]=0
                 return false;
             }
         }
